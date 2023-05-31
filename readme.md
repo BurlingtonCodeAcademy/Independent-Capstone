@@ -1,29 +1,26 @@
-# React Chat Backend
+# Independent Capstone Server
 
-This is your first pair/group coding project!
+As our capstones are full-stack projects, we will utilize the MERN stack: 
+- M: Mongoose/MongoDB
+- E: Express 
+- R: React
+- N: Node
 
-You will be creating a piece of full stack software: a chat application.
+Of course, this needs a backend: the server.
 
-You will be utilize the full MERN stack to do so: M(ongoose/MongoDB), E(xpress), R(eact), and N(ode).
-
-The React part of the project will be completed next week once you're done learning framework fundamentals. Right now, we will focus on making sure our back end performs all necessary logic to support the front end.
+For the Independent Capstone, the backend needs **_at least_**:
+- A user schema and controller with a minimum of login and signup functionality.
+- Another schema and controller with full CRUD (Create, Read, Update, Delete) functionality.
 
 Clone the following repository to your projects folder, then `cd` into `server` folder and run `npm i` to install all of the dependencies.
 
-## Message Schema
+After constructing all schemas and controllers, test all endpoints in Postman before beginning construction on the front end or client side of the application.
 
-Your message document in your `messages` collection should resemble the following:
+## Schemas
 
-```json
+The schemas must have a minimum of 4 properties, not including the id automatically generated for them when created in the DB.
 
-{
-    "when": "2018-07-15T20:00:47.696Z",
-    "user": "John",
-    "room": "Main",
-    "body": "I really want to attend NASA's DEVELOP program this summer!"
-}
-
-```
+You may add more properties as needed to fulfill the functionality you want to build with your data.
 
 ## User Schema
 
@@ -40,22 +37,12 @@ Your user document in your `users` collection should resemble the following:
 
 ```
 
-## Room Schema
 
-Your room document in your `rooms` collection should resemble the following:
+> NOTE: 
+> The other schema and its contents will be completely dependent on your project and the project's needs.
+>
+> > You are not limited to only 2 schemas, but two is the base requirement. 
 
-```json
-
-{
-    "name": "Continental",
-    "description": "No business conducted",
-    "addedUsers": ["John Wick", "Winston", "Ms. Perkins"]
-}
-
-```
-> HINT
-> `user`, `room`, and `addedUsers` refer to connection between users and their room and messages.
-> It's usually a good idea to utilize _id's to reference those.
 
 ## Stories
 
@@ -64,37 +51,33 @@ Your room document in your `rooms` collection should resemble the following:
 - [ ] Create user endpoint
 - [ ] Login user endpoint
 
-### Rooms
+### App Specific Collection
 
+- [ ] Display endpoint
 - [ ] Create endpoint
-- [ ] Display all rooms endpoint
+- [ ] Update endpoint
+- [ ] Delete endpoint
 
-### Messages
+## Icebox / Stretch Goals
 
-- [ ] Display all messages within a room endpoint
-- [ ] Create a message within a room endpoint
-- [ ] Update a message within a room endpoint
-- [ ] Delete a message within a room endpoint
+- [ ] Set up MongoDB Atlas cluster and utilize it to CRUD your database for this project. You must utilize .dotenv in this project to hide your username, password, and your connection string away from prying eyes of other GitHub users.
 
-## Icebox
-
-As this is a group project, it would be much easier to work on it if everyone had access to the same data. For that reason:
-
-- [ ] Setup MongoDB Atlas cluster and utilize it to CRUD your database for this project. You must utilize .dotenv in this project to hide your username, password, and your connection string away from prying eyes of other GitHub users.
-
-- [ ] Add `update` and `delete` endpoints to your `rooms` controller
-- [ ] Add `update` and `delete` endpoints to your `users` controller
+- [ ] Add `update` and `delete` endpoints to your `user` controller
 
 > HINT
-> Allowing updates on users means that collection associations need to be based on things user **CANNOT** change.
+> Allowing updates on users means that collection associations need to be based on things users **CANNOT** change.
 
-- [ ] Add isAdmin to your user collection and build middleware that only allows admins to update and delete rooms and messages.
+- [ ] Add isAdmin to your user collection and build middleware that only allows admins to update and delete other users or the app specific CRUD items.
 
-# React Chat Front End
+<br>
 
-Congratulations! You have successfully completed the backend section of the project, where you utilized Postman to test your API and make sure the routes are accessible and the data flows back and forth between your server and database.
+# Independent Capstone Client
 
-Now, it's time to build a user interface that your users will be able to interact with.
+Congratulations! You have successfully completed the backend section of the capstone, where you utilized Postman to test your API and make sure the routes are accessible and the data flows back and forth between your server and database.
+
+Now, it's time to build a user interface (UI) that your users will be able to interact with.
+
+We will be using React to build out our client side or front end of the application.
 
 ## Stories
 
@@ -104,33 +87,29 @@ Utilize `create-react-app` script to create a new instance of a React app within
 
 ### Auth Component
 
-This component should allow the user to register and signup. It will require conditional rendering to switch between both states.
+This component should allow the user to signup and login. It will require conditional rendering to switch between both states.
 
-It's functional end result should update the `localStorage` token in the browser's client. The token functionality is best put inside `App.jsx` so that other components can freely use it as well.
+It's functional end result should update the `localStorage` token in the browser's client. 
 
-### Rooms Component
+The token functionality is best put inside `App.jsx` so that other components can freely use it as well.
 
-This component should allow the user to view all available rooms to them. When clicked upon a room, they should be invited to respective room. This can be a separate component or one that shows up in nav-like fashion. If the latter is your preference, please skip to the next component.
+### App Specific Component
 
-### Room Component
+The rest of the front-end build is based on your application's purpose. 
 
-This component should consist of two sub-components: input and the view. The input allows user to input text into the field. After the input has been registered, the user will have a `send` button to the right of the field. This button should send the request over to the server's respective endpoint.
+You will need to construct components that will handle or allow the user to preform all of the full CRUD capabilities of the server.
 
-> HINT
-> In order to mimic WebSockets functionality (stateful), fetch data from the server each time a request is sent.
-> This will allow client to view the new message immediately in the display field.
+You may use a UI Library with your components, but please add enough styling so the components do not look exactly like the direct examples from the UI Library documentation. 
 
-The view sub-component should consist of an area where users can see all of the messages within a particular room.
-
-> NOTE
-> This application will be viewed by your potential employers. We don't specify any styling requirements.
+> NOTE:
+> This application will be viewed by your potential employers. 
 > It might be a good idea to utilize flex or grid and make sure it's visually simple and appealing to the eyes.
+> > We expect a fair amount of styling to make the client side look presentable and polished/complete.
 
 ## Icebox
 
-- [ ] Server has full CRUD functionality on messages. Basic requirement of this application is to send and retrieve messages. Add a button next to each message which will allow you to select `edit` and `delete` options. This will then send a request to update or delete respective message.
-
-- [ ] The user should only be allowed to delete their own messages.
-
-- [ ] Add admin functionality check which allows an admin to delete any messages.
+- [ ] The user should only be allowed to update or delete items that belong to them (items they created).
+- [ ] Make sure the application is mobile responsive.
+- [ ] Add admin functionality check which allows an admin to delete any app specific CRUD items.
+- [ ] If needed: utilize an external API for additional content. 
 
